@@ -1,9 +1,8 @@
-// 5. Let's clean up our code
+// 5. Let's check for a winner!
 
 var turnCount = 0;
 var boxes = document.querySelectorAll(".box");
 var button = document.querySelector("button")
-var winConditions = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[1,4,7],[2,5,8],[0,3,6],[1,4,7],[2,5,8]];
 
 button.addEventListener("click", resetBoard);
 
@@ -18,7 +17,7 @@ function takeTurn(){
 		} else {
 			this.innerHTML = "O";
 		}
-		checkWinner(this.innerHTML)
+		checkWinner()
 		turnCount++;
 	} 	
 }
@@ -29,12 +28,27 @@ function resetBoard(){
 	}
 }
 
-function checkWinner(player){
-	for(var i = 0; i < winConditions.length; i++){
-		if(boxes[winConditions[i][0]].innerHTML === player && boxes[winConditions[i][1]].innerHTML === player && boxes[winConditions[i][2]].innerHTML === player){
-			console.log(player + " wins!");
-		}
-	}
+function checkWinner(){
+	console.log("running checkwinner")
+	if(boxes[0].innerHTML === "X" && boxes[1].innerHTML === "X" && boxes[2].innerHTML === "X" ||
+	   boxes[3].innerHTML === "X" && boxes[4].innerHTML === "X" && boxes[5].innerHTML === "X" ||
+	   boxes[6].innerHTML === "X" && boxes[7].innerHTML === "X" && boxes[8].innerHTML === "X" ||
+	   boxes[0].innerHTML === "X" && boxes[3].innerHTML === "X" && boxes[6].innerHTML === "X" ||
+	   boxes[1].innerHTML === "X" && boxes[4].innerHTML === "X" && boxes[7].innerHTML === "X" ||
+	   boxes[2].innerHTML === "X" && boxes[5].innerHTML === "X" && boxes[8].innerHTML === "X" ||
+	   boxes[0].innerHTML === "X" && boxes[4].innerHTML === "X" && boxes[8].innerHTML === "X" ||
+	   boxes[2].innerHTML === "X" && boxes[4].innerHTML === "X" && boxes[6].innerHTML === "X") {
+	  	  console.log("X wins")
+	  } else if(boxes[0].innerHTML === "O" && boxes[1].innerHTML === "O" && boxes[2].innerHTML === "O" ||
+	   boxes[3].innerHTML === "O" && boxes[4].innerHTML === "O" && boxes[5].innerHTML === "O" ||
+	   boxes[6].innerHTML === "O" && boxes[7].innerHTML === "O" && boxes[8].innerHTML === "O" ||
+	   boxes[0].innerHTML === "O" && boxes[3].innerHTML === "O" && boxes[6].innerHTML === "O" ||
+	   boxes[1].innerHTML === "O" && boxes[4].innerHTML === "O" && boxes[7].innerHTML === "O" ||
+	   boxes[2].innerHTML === "O" && boxes[5].innerHTML === "O" && boxes[8].innerHTML === "O" ||
+	   boxes[0].innerHTML === "O" && boxes[4].innerHTML === "O" && boxes[8].innerHTML === "O" ||
+	   boxes[2].innerHTML === "O" && boxes[4].innerHTML === "O" && boxes[6].innerHTML === "O"){
+		  console.log("O wins")
+	  }
 }
 
 
